@@ -32,7 +32,7 @@ bst_t *bst_remove(bst_t *root, int value)
 	if (root == NULL)
 		return (NULL);
 	if (value < root->n)
-		bst_remove(root->l, value);
+		bst_remove(root->left, value);
 	else if (value > root->n)
 		bst_remove(root->right, value);
 	else if (value == root->n)
@@ -55,32 +55,32 @@ int remove_type(bst_t *root)
 {
 	int new = 0;
 
-	if (!root->l && !root->right)
+	if (!root->left && !root->right)
 	{
 		if (root->parent->right == root)
 			root->parent->right = NULL;
 		else
-			root->parent->l = NULL;
+			root->parent->left = NULL;
 		free(root);
 		return (0);
 	}
-	else if ((!root->l && root->right) || (!root->right && root->l))
+	else if ((!root->left && root->right) || (!root->right && root->left))
 	{
-		if (!root->l)
+		if (!root->left)
 		{
 			if (root->parent->right == root)
 				root->parent->right = root->right;
 			else
-				root->parent->l = root->right;
+				root->parent->left = root->right;
 			root->right->parent = root->parent;
 		}
 		if (!root->right)
 		{
 			if (root->parent->right == root)
-				root->parent->right = root->l;
+				root->parent->right = root->left;
 			else
-				root->parent->l = root->l;
-			root->l->parent = root->parent;
+				root->parent->left = root->left;
+			root->left->parent = root->parent;
 		}
 		free(root);
 		return (0);
@@ -108,8 +108,8 @@ int sucsesor(bst_t *node)
 	}
 	else
 	{
-		l = sucsesor(node->l);
-		if (l == 0)
+		l = sucsesor(node->left);
+		if (left == 0)
 			return (node->n);
 		return (l);
 	}
@@ -126,9 +126,9 @@ void balan(avl_t **tree)
 
 	if (tree == NULL || *tree == NULL)
 		return;
-	if ((*tree)->l == NULL && (*tree)->right == NULL)
+	if ((*tree)->left == NULL && (*tree)->right == NULL)
 		return;
-	balan(&(*tree)->l);
+	balan(&(*tree)->left);
 	balan(&(*tree)->right);
 	bal_v = binary_tree_balance((const binary_tree_t *)*tree);
 	if (bal_v > 1)
