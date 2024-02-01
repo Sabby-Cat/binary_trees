@@ -109,7 +109,7 @@ int sucsesor(bst_t *node)
 	else
 	{
 		l = sucsesor(node->left);
-		if (left == 0)
+		if (l == 0)
 			return (node->n);
 		return (l);
 	}
