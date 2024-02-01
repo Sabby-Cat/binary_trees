@@ -11,7 +11,7 @@ int heap_extract(heap_t **root)
 	int val;
 
 	if (!*root)
-		return (0);     
+		return (0);
 	val = (*root)->n;
 	if (!(*root)->left)
 	{

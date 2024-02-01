@@ -103,7 +103,9 @@ int sucsesor(bst_t *node)
 	int l = 0;
 
 	if (node == NULL)
+	{
 		return (0);
+	}
 	else
 	{
 		l = sucsesor(node->l);

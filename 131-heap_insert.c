@@ -38,7 +38,7 @@ heap_t *heap_insert(heap_t **root, int value)
 /**
  * bt_size - Measures size of binary tree
  * @tree: pointer to tree to be measure
- * Return: Size of tree or 0 
+ * Return: Size of tree or 0
  */
 size_t bt_size(const binary_tree_t *tree)
 {
